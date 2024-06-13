@@ -45,9 +45,9 @@ bool stack_push(StackArrayList *s, int elem){
 }
 
 bool stack_pop(StackArrayList *s){
-	if(s->)
-	
-	return
+//	if(s->)
+//	
+//	return
 }
 int stack_peek(StackArrayList s){
 	
