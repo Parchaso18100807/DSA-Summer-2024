@@ -40,7 +40,7 @@ void Dequeue(Queue* q){
 }
 
 int Front(Queue q){
-	return (q.front != NULL)? q.rear->data : -1;
+	return (q.front != NULL)? q.front->data : -1;
 }
 
 int Rear(Queue q){
