@@ -1,8 +1,32 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdbool.h>
+#include "StackLL.h"
 
-/* run this program using the console pauser or add your own getch, system("pause") or input loop */
+int main() {
+    StackLinkedList stack = createStack();
 
-int main(int argc, char *argv[]) {
-	return 0;
+    stack_push(&stack, 10);
+    stack_push(&stack, 25);
+    stack_push(&stack, 30);
+    stack_push(&stack, 45);
+    stack_push(&stack, 50);
+    display(stack);
+    visualize(stack);
+
+    printf("Top element: %d\n\n", stack_peek(stack));
+
+    stack_pop(&stack);
+    stack_pop(&stack);
+    display(stack);
+    visualize(stack);
+    printf("Top element: %d\n\n", stack_peek(stack));
+
+    StackLinkedList evenStack = getEven(&stack);
+    printf("Even elements in a new stack: ");
+    display(evenStack);
+    visualize(evenStack);
+
+    return 0;
 }
+
