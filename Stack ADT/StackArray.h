@@ -20,4 +20,6 @@ int stack_peek(StackArrayList s);
 void display(StackArrayList s);
 void visualize(StackArrayList s);
 
+StackArrayList getEven(StackArrayList *s);
+
 #endif
