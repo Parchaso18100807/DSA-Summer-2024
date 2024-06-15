@@ -60,7 +60,6 @@ void insertatIndex(NodePtr* head, info elem, int ndx){
 	}	
 }
 
-
 void insertSorted(NodePtr* head, info elem){
 	NodePtr *trav, temp;
 	for(trav=head; *trav != NULL && (*trav)->data.age <= elem.age; trav = &(*trav)->next){}
@@ -78,11 +77,30 @@ void deleteFirst(NodePtr* head){
 	free(temp);
 }
 
-void deleteLast(NodePtr* head){
-	NodePtr *trav;
-	for(trav=head; (*trav)->next->next != NULL; trav = &(*trav)->next){}
-	free((*trav)->next);
-	(*trav)->next = NULL;
+void deleteLast(NodePtr* head) {
+    if (*head == NULL) return;
+
+    if ((*head)->next == NULL) {
+        free(*head);
+        *head = NULL;
+        return;
+    }
+
+    NodePtr *trav;
+    for (trav = head; (*trav)->next->next != NULL; trav = &(*trav)->next) {}
+    free((*trav)->next);
+    (*trav)->next = NULL;
+}
+
+void deleteMember(NodePtr* head, info elem) {
+    NodePtr *trav, temp;
+    for (trav = head; *trav != NULL && (strcmp((*trav)->data.name, elem.name) != 0 || (*trav)->data.idNum != elem.idNum || (*trav)->data.age != elem.age); trav = &(*trav)->next) {}
+
+    if (*trav != NULL) {
+        temp = *trav;
+        *trav = (*trav)->next;
+        free(temp);
+    }
 }
 
 int main(void) {
