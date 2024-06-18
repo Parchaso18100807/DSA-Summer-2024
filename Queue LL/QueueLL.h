@@ -1,5 +1,5 @@
-#ifndef STACK_ARRAY
-#define STACK_ARRAY
+#ifndef QUEUE_LINKEDLIST
+#define QUEUE_LINKEDLIST
 
 typedef struct node {
     int data;
