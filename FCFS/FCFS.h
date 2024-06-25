@@ -9,7 +9,7 @@ typedef struct node {
     int turnAroundTime;
     float avgWaitTime;
     float avgTurnAroundTime;
-    int endTime;
+    int executionTime;
     struct node* next;
 } fcfsNode, *fcfsPtr;
 
