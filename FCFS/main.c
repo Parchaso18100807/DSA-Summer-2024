@@ -2,9 +2,18 @@
 #include <stdlib.h>
 #include "FCFS.h"
 
-/* run this program using the console pauser or add your own getch, system("pause") or input loop */
-
 int main(int argc, char *argv[]) {
-	
-	return 0;
+    Queue q;
+    initQueue(&q);
+    
+    enqueue(&q, 'A', 5, 0);
+    enqueue(&q, 'B', 3, 2);
+    enqueue(&q, 'C', 6, 4);
+    
+    calculateMetrics(&q);
+    
+    displayFCFS(q);
+    
+    return 0;
 }
+
