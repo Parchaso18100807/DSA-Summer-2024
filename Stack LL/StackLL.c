@@ -39,7 +39,7 @@ bool stack_pop(StackLinkedList *s) {
 }
 
 int stack_peek(StackLinkedList s) {
-    return (isEmpty(s))? s.top->data : -1;
+    return (isEmpty(s))? -1 : s.top->data;
 }
 
 void display(StackLinkedList s) {

@@ -38,9 +38,9 @@ void insertFirst(NodePtr* head, info elem){
 
 void insertLast(NodePtr* head, info elem){
 	NodePtr *trav, temp;
-	for(trav=head; *trav != NULL; trav = &(*trav)->next){}
 	temp = (NodePtr)malloc(sizeof(Node));
 	if(temp!=NULL){
+	for(trav=head; *trav != NULL; trav = &(*trav)->next){}
 		temp->data = elem;
 		temp->next = *trav;
 		*trav = temp;
@@ -51,20 +51,22 @@ void insertatIndex(NodePtr* head, info elem, int ndx){
 	NodePtr *trav, temp;
 	int ctr = 0;
 
-	for(trav=head; ctr < ndx && *trav != NULL; trav = &(*trav)->next, ctr++){}
 	temp = (NodePtr)malloc(sizeof(Node));
 	if(temp!=NULL){
-		temp->data = elem;
-		temp->next = *trav;
-		*trav = temp;
+		for(trav=head; ctr < ndx && *trav != NULL; trav = &(*trav)->next, ctr++){}
+		if(ctr < ndx){
+			temp->data = elem;
+			temp->next = *trav;
+			*trav = temp;
+		}
 	}	
 }
 
 void insertSorted(NodePtr* head, info elem){
 	NodePtr *trav, temp;
-	for(trav=head; *trav != NULL && (*trav)->data.age <= elem.age; trav = &(*trav)->next){}
 	temp = (NodePtr)malloc(sizeof(Node));
 	if(temp!=NULL){
+		for(trav=head; *trav != NULL && (*trav)->data.age <= elem.age; trav = &(*trav)->next){}
 		temp->data = elem;
 		temp->next = *trav;
 		*trav = temp;
