@@ -47,7 +47,8 @@ int stack_peek(StackArrayList s) {
 }
 
 void display(StackArrayList s) {
-    StackArrayList tempStack = createStack();
+    StackArrayList tempStack;
+    initStack(&tempStack);
     printf("Stack elements: ");
     while (!isEmpty(s)) {
         int elem = stack_peek(s);
@@ -57,11 +58,11 @@ void display(StackArrayList s) {
     }
     printf("\n");
 
-    while (!isEmpty(tempStack)) {
-        int elem = stack_peek(tempStack);
-        stack_pop(&tempStack);
-        stack_push(&s, elem);
-    }
+//    while (!isEmpty(tempStack)) {
+//        int elem = stack_peek(tempStack);
+//        stack_pop(&tempStack);
+//        stack_push(&s, elem);
+//    }
 }
 
 void visualize(StackArrayList s) {
