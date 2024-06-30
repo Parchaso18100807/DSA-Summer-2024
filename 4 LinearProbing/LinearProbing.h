@@ -31,7 +31,7 @@ typedef struct {
 } closedHash;
 
 void initHash(closedHash* CH);
-int hash(int idNum);
+int hash(int key);
 void insert(closedHash* CH, studentInfo student);
 void delete(closedHash* CH, int idNum);
 void display(closedHash CH);

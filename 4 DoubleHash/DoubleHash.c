@@ -1,55 +1,58 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "LinearProbing.h"
-#define MAX 10
+#include "DoubleHash.h"
 
 void initHash(closedHash* CH) {
-    int i;
+	int i;
     for (i = 0; i < MAX; i++) {
         CH->arr[i].status = EMPTY;
     }
 }
 
-int hash(int key) {
+int hash1(int key) {
     return key % MAX;
 }
 
-void insert(closedHash* CH, studentInfo student) {
-    int index = hash(student.idNum);
-    int originalIndex = index;
-    int i = 1;
+int hash2(int key) {
+    return 7 - (key % 7);
+}
 
-    while (CH->arr[index].status == OCCUPIED) {
-        index = (originalIndex + i) % MAX;
+void insert(closedHash* CH, studentInfo student) {
+    int h1 = hash1(student.idNum);
+    int h2 = hash2(student.idNum);
+    int i = 0;
+
+    while (CH->arr[h1].status == OCCUPIED) {
+        h1 = (h1 + i * h2) % MAX;
         i++;
-        if (index == originalIndex) {
+        if (i == MAX) {
             printf("Hash table is full\n");
         }
     }
-    CH->arr[index] = student;
-    CH->arr[index].status = OCCUPIED;
+
+    CH->arr[h1] = student;
+    CH->arr[h1].status = OCCUPIED;
 }
 
 void delete(closedHash* CH, int idNum) {
-    int index = hash(idNum);
-    int originalIndex = index;
-    int i = 1;
+    int h1 = hash1(idNum);
+    int h2 = hash2(idNum);
+    int i = 0;
 
-    while (CH->arr[index].status != EMPTY) {
-        if (CH->arr[index].status == OCCUPIED && CH->arr[index].idNum == idNum) {
-            CH->arr[index].status = DELETED;
+    while (CH->arr[h1].status != EMPTY) {
+        if (CH->arr[h1].status == OCCUPIED && CH->arr[h1].idNum == idNum) {
+            CH->arr[h1].status = DELETED;
         }
-        index = (originalIndex + i) % MAX;
+        h1 = (h1 + i * h2) % MAX;
         i++;
-        if (index == originalIndex) {
+        if (i == MAX) {
             printf("Element not found\n");
         }
     }
-    printf("Element not found\n");
 }
 
 void display(closedHash CH) {
-    int i;
+	int i;
     for (i = 0; i < MAX; i++) {
         printf("%d: ", i);
         if (CH.arr[i].status == OCCUPIED) {
@@ -59,9 +62,9 @@ void display(closedHash CH) {
                 CH.arr[i].birthdate.month, CH.arr[i].birthdate.year,
                 CH.arr[i].age);
         } else if (CH.arr[i].status == DELETED) {
-            printf("Deleted");
+            printf("DELETED");
         } else {
-            printf("NULL");
+            printf("EMPTY");
         }
         printf("\n");
     }

@@ -2,18 +2,19 @@
 #include <stdlib.h>
 #include <stdbool.h>
 #include "CircularQueue.h"
+#define MAX 10
 
-void initQueue(CircularQueue* q){
-    q->front = -1;
-    q->rear = -1;
+void initQueue(CircularQueue* q) {
+    q->front = 0;
+    q->rear = MAX - 1;
 }
 
 bool isEmpty(CircularQueue q) {
-    return (q.front == -1);
+    return (q.front == q.rear + 1 || (q.front == 0 && q.rear == MAX - 1));
 }
 
 bool isFull(CircularQueue q) {
-    return ((q.front == q.rear + 1) || (q.front == 0 && q.rear == MAX - 1));
+    return ((q.rear + 2) % MAX == q.front);
 }
 
 void Enqueue(CircularQueue *q, int elem){

@@ -29,7 +29,7 @@ typedef struct {
 } openHash;
 
 void initHash(openHash* OH);
-int hash(int idNum);
+int hash(int key);
 void insert(openHash* OH, studentInfo student, int key);
 void delete(openHash* OH, int idNum, int key);
 void display(openHash OH);
