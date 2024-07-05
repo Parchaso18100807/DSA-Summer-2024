@@ -3,13 +3,13 @@
 
 typedef struct {
 	int date, month, year;
-};
+} Date;
 
 typedef struct {
 	char prodName[20];
 	float prodPrice;
 	int prodQty;
-	Date expDate
+	Date expDate;
 } Product;
 
 typedef struct node{
