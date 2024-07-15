@@ -2,7 +2,7 @@
 #define Graphs
 #define N 5
 
-void addEdge(int adjMatrix[N][N], int from, int to);
-void printAdjacencyMatrix(int adjMatrix[N][N]);
+void addEdge(int Graph[N][N], int row, int col);
+void printGraph(int Graph[N][N]);
 
 #endif
